@@ -1,46 +1,44 @@
-Polyphonic Music Generation with Transformers
+AI Engineering Portfolio
 
-Author
 Alex Eduardo Cervantes Fong
 
-Overview
+This repository gathers selected projects developed in the field of Artificial Intelligence, with a focus on Generative Models, Natural Language Processing, and Deep Learning. Each project reflects hands on experimentation, architectural design decisions, and critical evaluation of results rather than isolated model implementation.
 
-This project presents a polyphonic music generation system based on a causal Transformer architecture trained on symbolic MIDI data from the MAESTRO Dataset
+🎹 Project 1: Polyphonic Music Generation with Transformers
 
-The model learns rhythmic and harmonic structures from piano performances and generates new melodies conditioned on tempo and dynamics
+Category: Generative AI | Audio Modeling | PyTorch
 
-The objective of the project was to explore sequence modeling, structured tokenization, and controlled generative AI using deep learning
+This project presents a polyphonic music generation system based on a causal Transformer trained on symbolic MIDI data from the MAESTRO Dataset.
 
-Methodology
+Music is modeled as a sequence of structured events rather than raw audio, allowing the system to learn rhythmic and harmonic relationships directly from piano performances. The preprocessing pipeline includes segmentation of long pieces into manageable fragments and the design of a custom tokenization scheme based on musical events.
 
-Music is represented using symbolic MIDI instead of raw audio in order to reduce computational cost and improve interpretability
+The architecture is built around a multi layer Transformer trained in an autoregressive manner, predicting the next musical token given previous context. The system also incorporates conditioning tokens to guide expressive attributes such as tempo and dynamics during generation.
 
-Long performances were segmented into fixed length fragments to create consistent training samples. Very short notes and low density fragments were filtered to improve musical coherence
+This project highlights experience in sequence modeling, symbolic representation design, and controlled generative systems applied to music.
 
-An event based encoding scheme was designed using NOTE_ON NOTE_OFF and TIME_SHIFT tokens. Time was discretized at 25 millisecond resolution and velocity values were grouped into eight dynamic levels. The pitch range was restricted to the standard piano register
+🔍 Project 2: RAG Pipeline for Technical Documentation
 
-Special tokens were introduced to represent beginning and end of sequence as well as tempo and dynamics conditioning. The final vocabulary size was 1002 tokens
+Category: NLP | LLMs | Information Retrieval
 
-Model Architecture
+This project consists of a Retrieval Augmented Generation pipeline designed to answer domain specific questions using a curated technical corpus.
 
-The system is built using a six layer causal Transformer with an embedding dimension of 256 and eight attention heads
+The system combines document preprocessing, semantic chunking, and vector embeddings to enable similarity based retrieval. Retrieved content is then used as contextual grounding for a language model, improving the factual consistency of generated answers.
 
-Learned positional embeddings are used to preserve temporal order. The model is trained using cross entropy loss and optimized with AdamW with a learning rate of 3e-4
+Different retrieval configurations and embedding strategies were explored to analyze their impact on response quality and hallucination reduction in Large Language Models.
 
-Gradient clipping was applied to improve training stability. The model was trained for 210 epochs with checkpoint monitoring
+The implementation was developed in Python using LangChain and vector databases for efficient semantic search.
 
-The training objective is autoregressive. At each step the model predicts the next token given the previous musical context
+This work demonstrates practical understanding of retrieval systems, prompt augmentation, and the integration of language models with external knowledge sources.
 
-Music Generation
+🖼️ Project 3: Anime Face Generation with GAN
 
-Generation begins with conditioning tokens that specify tempo categories SLOW MED FAST and dynamics categories SOFT MED LOUD
+Category: Computer Vision | Generative Models | TensorFlow
 
-Stochastic sampling strategies including temperature top k and top p were implemented to balance coherence and diversity
+This project explores adversarial image generation using a Generative Adversarial Network trained on an anime face dataset from Kaggle.
 
-Generated token sequences are reconstructed into MIDI format and rendered into audio for qualitative evaluation
+The system is composed of two neural networks trained in opposition: a Generator that creates synthetic images from random noise and a Discriminator that learns to distinguish between real and generated samples. Through this competitive process, the Generator progressively improves its ability to produce visually coherent faces.
 
-Results
+The architecture relies on convolutional layers for feature extraction and upsampling, along with normalization and regularization techniques to support stable training. Model performance was monitored both qualitatively and through distribution based evaluation metrics to assess realism and convergence.
 
-The model achieved stable convergence and generated harmonically consistent and rhythmically structured polyphonic sequences
+This project emphasizes practical experience with adversarial training dynamics, generative modeling in computer vision, and the challenges associated with stability and evaluation in GAN based systems.
 
-Conditioning tokens successfully influenced expressive characteristics, demonstrating controlled generative behavior
